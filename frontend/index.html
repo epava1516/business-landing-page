@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 
+
+
 {% block content %}
-  {% include "main/index.html" %}
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    {% include "body/hero.html" %}
+  </section><!-- End Hero -->
+
+  <main id="main">
+    {% include "main/index.html" %}
+  </main><!-- End #main -->
 {% endblock %}

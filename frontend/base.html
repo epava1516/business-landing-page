@@ -20,15 +20,8 @@
     {% include "body/header.html" %}
   </header><!-- End Header -->
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-    {% include "body/hero.html" %}
-  </section><!-- End Hero -->
-
-  <main id="main">
-    {% block content %}
-    {% endblock %}
-  </main><!-- End #main -->
+  {% block content %}
+  {% endblock %}
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
