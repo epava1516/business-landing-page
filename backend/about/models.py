@@ -1,26 +1,45 @@
 from django.db import models
 
 # Create your models here.
-class about_list(models.Model):
+
+class AboutList(models.Model):
     item = models.CharField(max_length=50)
 
-class about(models.Model):
+    def __str__(self):
+        return self.item
+
+class About(models.Model):
     first_description = models.TextField()
     second_description = models.TextField()
-    list_description = models.ForeignKey(about_list, on_delete=models.CASCADE)
+    list_description = models.ForeignKey(AboutList, on_delete=models.CASCADE)
 
-class about_faq(models.Model):
-    title = models.CharField(max_length=100)
+    def __str__(self):
+        return self.first_description
+
+class Why(models.Model):
+    title = models.CharField(max_length=100, db_index=True)
     description = models.TextField()
 
-class about_faq_list(models.Model):
-    title = models.CharField(max_length=100)
+    def __str__(self):
+        return self.title
+
+class WhyList(models.Model):
+    title = models.CharField(max_length=100, db_index=True)
     description = models.TextField()
 
-class about_skill(models.Model):
-    title = models.CharField(max_length=100)
+    def __str__(self):
+        return self.title
+
+class Skill(models.Model):
+    title = models.CharField(max_length=100, db_index=True)
     description = models.TextField()
 
-class about_skill_list(models.Model):
+    def __str__(self):
+        return self.title
+
+class SkillList(models.Model):
     title = models.CharField(max_length=20)
     ratio = models.IntegerField()
+
+    def __str__(self):
+        return self.title
