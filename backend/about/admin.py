@@ -7,7 +7,11 @@ class AboutListAdmin(admin.ModelAdmin):
 
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
-    list_display = ['first_description', 'second_description', 'list_description',]
+    list_display = ['first_description', 'second_description', 'display_about_list',]
+
+    def display_about_list(self, obj):
+        return ", ".join([about_list.item for about_list in obj.list_description.all()])
+    display_about_list.short_description = 'About List Items'
 
 @admin.register(Why)
 class WhyAdmin(admin.ModelAdmin):

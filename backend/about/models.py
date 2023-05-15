@@ -12,7 +12,7 @@ class AboutList(models.Model):
 class About(SingletonModel):
     first_description = models.TextField()
     second_description = models.TextField()
-    list_description = models.ForeignKey(AboutList, on_delete=models.CASCADE)
+    list_description = models.ManyToManyField(AboutList)
 
     def __str__(self):
         return self.first_description
