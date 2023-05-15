@@ -1,23 +1,23 @@
 from django.db import models
 from backend.home.models import SingletonModel
 
-class Services(SingletonModel):
+# Create your models here.
+class Pricing(SingletonModel):
     description = models.TextField()
 
     def __str__(self):
         return self.description[:50]
-
-class ServiceList(models.Model):
-    icon = models.CharField(max_length=50)
+    
+class PricingDescriptionList(models.Model):
     title = models.CharField(max_length=50, db_index=True)
-    description = models.TextField()
 
     def __str__(self):
         return self.title
 
-class Cta(SingletonModel):
+class PricingList(models.Model):
     title = models.CharField(max_length=50, db_index=True)
-    description = models.TextField()
+    price = models.IntegerField()
+    descriptionlist = models.ForeignKey(PricingDescriptionList, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title

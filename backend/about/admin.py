@@ -24,4 +24,3 @@ class SkillAdmin(admin.ModelAdmin):
 @admin.register(SkillList)
 class SkillListAdmin(admin.ModelAdmin):
     list_display = ['title', 'ratio',]
-    

@@ -1,4 +1,5 @@
 from django.db import models
+from backend.home.models import SingletonModel
 
 # Create your models here.
 
@@ -8,7 +9,7 @@ class AboutList(models.Model):
     def __str__(self):
         return self.item
 
-class About(models.Model):
+class About(SingletonModel):
     first_description = models.TextField()
     second_description = models.TextField()
     list_description = models.ForeignKey(AboutList, on_delete=models.CASCADE)
@@ -16,7 +17,7 @@ class About(models.Model):
     def __str__(self):
         return self.first_description
 
-class Why(models.Model):
+class Why(SingletonModel):
     title = models.CharField(max_length=100, db_index=True)
     description = models.TextField()
 
@@ -30,7 +31,7 @@ class WhyList(models.Model):
     def __str__(self):
         return self.title
 
-class Skill(models.Model):
+class Skill(SingletonModel):
     title = models.CharField(max_length=100, db_index=True)
     description = models.TextField()
 

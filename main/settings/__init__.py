@@ -32,10 +32,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api',
 ]
 
-backend_apps = ["backend.about", "backend.contact", "backend.home", "backend.portfolio", "backend.services", "backend.team",]
+backend_apps = [
+    'api',
+    "backend.about",
+    "backend.contact",
+    "backend.home",
+    "backend.portfolio",
+    "backend.services",
+    "backend.team",
+    "backend.pricing",
+    "backend.faq",
+]
 
 INSTALLED_APPS += backend_apps
 
