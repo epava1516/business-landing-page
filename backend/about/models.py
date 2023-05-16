@@ -17,13 +17,6 @@ class About(SingletonModel):
     def __str__(self):
         return self.first_description
 
-class Why(SingletonModel):
-    title = models.CharField(max_length=100, db_index=True)
-    description = models.TextField()
-
-    def __str__(self):
-        return self.title
-
 class WhyList(models.Model):
     title = models.CharField(max_length=100, db_index=True)
     description = models.TextField()
@@ -31,9 +24,11 @@ class WhyList(models.Model):
     def __str__(self):
         return self.title
 
-class Skill(SingletonModel):
+class Why(SingletonModel):
     title = models.CharField(max_length=100, db_index=True)
+    title_bold = models.CharField(max_length=100, db_index=True)
     description = models.TextField()
+    list_description = models.ManyToManyField(WhyList)
 
     def __str__(self):
         return self.title
@@ -41,6 +36,14 @@ class Skill(SingletonModel):
 class SkillList(models.Model):
     title = models.CharField(max_length=20)
     ratio = models.IntegerField()
+
+    def __str__(self):
+        return self.title
+
+class Skill(SingletonModel):
+    title = models.CharField(max_length=100, db_index=True)
+    description = models.TextField()
+    list_description = models.ManyToManyField(SkillList)
 
     def __str__(self):
         return self.title
