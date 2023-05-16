@@ -1,10 +1,5 @@
 from django.db import models
-
-class Team(models.Model):
-    description = models.TextField()
-
-    def __str__(self):
-        return self.description[:50]
+from backend.home.models import SingletonModel
 
 class TeamUser(models.Model):
     img_url = models.CharField(max_length=50)
@@ -19,3 +14,10 @@ class TeamUser(models.Model):
 
     def __str__(self):
         return self.title
+
+class Team(SingletonModel):
+    description = models.TextField()
+    list_description = models.ManyToManyField(TeamUser)
+
+    def __str__(self):
+        return self.description[:50]

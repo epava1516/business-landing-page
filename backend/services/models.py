@@ -19,6 +19,7 @@ class Services(SingletonModel):
 class Cta(SingletonModel):
     title = models.CharField(max_length=50, db_index=True)
     description = models.TextField()
+    button = models.CharField(max_length=50, db_index=True)
 
     def __str__(self):
         return self.title

@@ -3,7 +3,7 @@ from backend.services.models import Services, ServiceList, Cta
 
 @admin.register(ServiceList)
 class ServiceListAdmin(admin.ModelAdmin):
-    list_display = ['icon', 'title', 'description',]
+    list_display = ['title', 'description', 'icon',]
 
 @admin.register(Services)
 class ServicesAdmin(admin.ModelAdmin):
@@ -15,4 +15,4 @@ class ServicesAdmin(admin.ModelAdmin):
 
 @admin.register(Cta)
 class CtaAdmin(admin.ModelAdmin):
-    list_display = ['title', 'description',]
+    list_display = ['title', 'description', 'button',]
