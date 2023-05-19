@@ -1,4 +1,4 @@
-> # **Note**
+> **Note**
 > Estos tags fueron dedicados a probar el funcionamiento de Git Flow. 
 
 > ## 0.0.1
