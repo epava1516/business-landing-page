@@ -1,3 +1,6 @@
+> **Note**
+> Estos tags fueron dedicados a probar el funcionamiento de Git Flow. 
+
 > ## 0.0.1
 ---
 - Versiones de prueba, aprendiendo a usar git flow.
