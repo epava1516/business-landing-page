@@ -1,14 +1,19 @@
 from django.contrib import admin
-from backend.pricing.models import Pricing, PricingDescriptionList, PricingList
+from backend.pricing.models import Pricing, Action, PricingColumn, ActionItem
 
-@admin.register(Pricing)
+class ActionItemInline(admin.TabularInline):
+    model = ActionItem
+    extra = 1
+
+class PricingColumnAdmin(admin.ModelAdmin):
+    inlines = [ActionItemInline]
+
 class PricingAdmin(admin.ModelAdmin):
-    list_display = ['description',]
+    pass
 
-@admin.register(PricingDescriptionList)
-class PricingDescriptionListAdmin(admin.ModelAdmin):
-    list_display = ['title',]
+class ActionAdmin(admin.ModelAdmin):
+    pass
 
-@admin.register(PricingList)
-class PricingListAdmin(admin.ModelAdmin):
-    list_display = ['title', 'price',]
+admin.site.register(Pricing, PricingAdmin)
+admin.site.register(Action, ActionAdmin)
+admin.site.register(PricingColumn, PricingColumnAdmin)

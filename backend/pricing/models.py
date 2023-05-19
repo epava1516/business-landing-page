@@ -1,23 +1,30 @@
 from django.db import models
 from backend.home.models import SingletonModel
 
-# Create your models here.
 class Pricing(SingletonModel):
     description = models.TextField()
 
     def __str__(self):
         return self.description[:50]
-    
-class PricingDescriptionList(models.Model):
-    title = models.CharField(max_length=50, db_index=True)
+
+class Action(models.Model):
+    description = models.TextField()
+
+    def __str__(self):
+        return self.description[:50]
+
+class PricingColumn(models.Model):
+    pricing = models.ForeignKey(Pricing, on_delete=models.CASCADE, related_name='columns')
+    title = models.CharField(max_length=50)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
         return self.title
 
-class PricingList(models.Model):
-    title = models.CharField(max_length=50, db_index=True)
-    price = models.IntegerField()
-    descriptionlist = models.ForeignKey(PricingDescriptionList, on_delete=models.CASCADE)
+class ActionItem(models.Model):
+    action = models.ForeignKey(Action, on_delete=models.CASCADE)
+    column = models.ForeignKey(PricingColumn, on_delete=models.CASCADE, related_name='actions')
+    available = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.title
+        return self.action.description
