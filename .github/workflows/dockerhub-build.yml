@@ -21,7 +21,9 @@ jobs:
       - name: Construir y etiquetar imagen Docker
         run: docker build -t landing-page:${{ github.ref_name }} .
 
-      - name: Empujar imagen a Docker Hub
+      - name: Push imagen a Docker Hub
         run: |
           docker tag landing-page:${{ github.ref_name }} epava1516/landing-page:${{ github.ref_name }}
+          docker tag landing-page:${{ github.ref_name }} epava1516/landing-page:latest
           docker push epava1516/landing-page:${{ github.ref_name }}
+          docker push epava1516/landing-page:latest
