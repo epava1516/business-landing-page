@@ -1,4 +1,8 @@
-> **Note**
+> ## 0.0.5
+---
+- GitHub Action para push de imagenes de Docker cuando se crea una nueva release.
+
+> **Note** <br>
 > Estos tags fueron dedicados a probar el funcionamiento de Git Flow. 
 
 > ## 0.0.1

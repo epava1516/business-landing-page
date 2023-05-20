@@ -1,0 +1,27 @@
+name: Build y push a Docker Hub
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v2
+
+      - name: Autenticación de Docker Hub
+        run: docker login --username epava1516 --password-stdin
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Construir y etiquetar imagen Docker
+        run: docker build -t landing-page:${{ github.ref_name }} .
+
+      - name: Empujar imagen a Docker Hub
+        run: |
+          docker tag landing-page:${{ github.ref_name }} epava1516/landing-page:${{ github.ref_name }}
+          docker push epava1516/landing-page:${{ github.ref_name }}
