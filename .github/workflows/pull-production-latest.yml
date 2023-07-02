@@ -1,0 +1,25 @@
+name: Pull a production latest version
+
+on:
+  workflow_run:
+    workflows: ["Build and Deploy"]
+    branches: [master]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Conectar al servidor y actualizar contenedor
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/business-landing-page
+            docker-compose pull
+            docker-compose up -d

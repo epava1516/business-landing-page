@@ -4,7 +4,7 @@ from backend.home.models import SingletonModel
 # Create your models here.
 
 class AboutList(models.Model):
-    item = models.CharField(max_length=50)
+    item = models.TextField()
 
     def __str__(self):
         return self.item
@@ -34,7 +34,7 @@ class Why(SingletonModel):
         return self.title
 
 class SkillList(models.Model):
-    title = models.CharField(max_length=20)
+    title = models.CharField(max_length=100)
     ratio = models.IntegerField()
 
     def __str__(self):

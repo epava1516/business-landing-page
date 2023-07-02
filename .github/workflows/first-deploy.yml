@@ -1,0 +1,38 @@
+name: Primer despliegue
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Generar archivo .env en el servidor
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "POSTGRES_USER=${{ secrets.DB_USER }}" \
+              "POSTGRES_PASSWORD=${{ secrets.DB_PASSWORD }}" \
+              "POSTGRES_DB=${{ secrets.DB_NAME }}" \
+              "POSTGRES_HOST=landing-db" \
+              "POSTGRES_PORT=5432" \
+              "DJANGO_DEBUG=0" \
+              "DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}" \
+              "ALLOWED_EXTERNAL=151.80.61.216,api,localhost,127.0.0.1" \
+              "DJANGO_ENV=${{ vars.DJANGO_ENV }}" \
+              > ~/business-landing-page/.env
+
+      - name: Desplegar con Docker Compose en el servidor
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/business-landing-page
+            docker-compose up -d

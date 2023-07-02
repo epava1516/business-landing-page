@@ -13,7 +13,7 @@
       <div class="col-lg-4 {% if forloop.counter > 1 %}mt-4 mt-lg-0{% endif %}" data-aos="fade-up" data-aos-delay='{{ forloop.counter|multiply:"100" }}'>
         <div class="box {% if forloop.counter == 2 %}featured{% endif %}">
           <h3>{{ column.title }}</h3>
-          <h4><sup>$</sup>{{ column.price }}<span>per month</span></h4>
+          <h4><sup>$</sup>{{ column.price|floatformat:"0" }}<span>per month</span></h4>
           <ul>
             {% for action in column.actions.all %}
               {% if action.available %}

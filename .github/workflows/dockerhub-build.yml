@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Clonar el repositorio
         uses: actions/checkout@v2
@@ -27,3 +27,4 @@ jobs:
           docker tag landing-page:${{ github.ref_name }} epava1516/landing-page:latest
           docker push epava1516/landing-page:${{ github.ref_name }}
           docker push epava1516/landing-page:latest
+S
